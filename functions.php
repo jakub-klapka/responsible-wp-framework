@@ -22,18 +22,18 @@ global $lumi;
  *      .frontend.php will be loaded when not in admin (even logged in)
  */
 $core['Glob'] = glob( LUMI_CORE_PATH . '*.glob.php' );
-if( is_admin() ) {
+if ( is_admin() ) {
 	$core['Admin'] = glob( LUMI_CORE_PATH . '*.admin.php' );
 } else {
 	$core['Frontend'] = glob( LUMI_CORE_PATH . '*.frontend.php' );
 }
-foreach( $core as $scope => $files ) {
-	if( $files !== false ) {
-		foreach( $files as $file ) {
+foreach ( $core as $scope => $files ) {
+	if ( $files !== false ) {
+		foreach ( $files as $file ) {
 			include_once $file;
-			$class_name = basename( $file, '.' . strtolower($scope) . '.php' );
-			$class_path = '\\Lumi\\' . $scope . '\\' . $class_name;
-			$lumi[$scope][strtolower($class_name)] = new $class_path;
+			$class_name                                  = basename( $file, '.' . strtolower( $scope ) . '.php' );
+			$class_path                                  = '\\Lumi\\' . $scope . '\\' . $class_name;
+			$lumi[ $scope ][ strtolower( $class_name ) ] = new $class_path;
 		}
 	}
 }
@@ -45,19 +45,20 @@ foreach( $core as $scope => $files ) {
  * @var string $name
  * @return \Lumi\Template\Reviews
  */
-function lumi_template($name) {
-	if( empty( $name ) ) {
+function lumi_template( $name ) {
+	if ( empty( $name ) ) {
 		return false;
 	}
 
-	if( isset( $lumi['Template'][$name] ) ) {
-		return $lumi['Template'][$name]; //If template functions are already loaded
+	if ( isset( $lumi['Template'][ $name ] ) ) {
+		return $lumi['Template'][ $name ]; //If template functions are already loaded
 	}
 
 	include_once LUMI_CORE_PATH . $name . '.template.php';
-	$class_name = '\\Lumi\\Template\\' . $name;
-	$lumi['Template'][$name] = new $class_name;
-	return $lumi['Template'][$name];
+	$class_name                = '\\Lumi\\Template\\' . $name;
+	$lumi['Template'][ $name ] = new $class_name;
+
+	return $lumi['Template'][ $name ];
 }
 
 /**
@@ -65,11 +66,11 @@ function lumi_template($name) {
  * All classes are located in core/classes as class_name.class.php
  * All classes are using namespace Lumi/Classes
  */
-spl_autoload_register( function( $class ){
-	if( strpos( $class, 'Lumi\\Classes\\' ) === false ) {
+spl_autoload_register( function ( $class ) {
+	if ( strpos( $class, 'Lumi\\Classes\\' ) === false ) {
 		return;
 	}
-	$tmp = explode('\\', $class);
+	$tmp        = explode( '\\', $class );
 	$class_name = end( $tmp );
 	require_once( LUMI_CORE_PATH . 'classes/' . $class_name . '.class.php' );
 } );

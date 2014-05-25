@@ -14,7 +14,7 @@ class Portfolio {
 	private $name;
 
 	public function __construct( $id ) {
-		$this->id = $id;
+		$this->id   = $id;
 		$this->name = get_field( 'name', $id );
 	}
 

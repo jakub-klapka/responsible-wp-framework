@@ -12,16 +12,14 @@ namespace Lumi\Glob;
  */
 class Reviews {
 
-	public function __construct()
-	{
+	public function __construct() {
 
 		add_action( 'init', array( $this, 'register_cpt' ) );
 
 	}
 
-	public function register_cpt()
-	{
-		register_post_type('reviews');
+	public function register_cpt() {
+		register_post_type( 'reviews' );
 	}
 
 } 

@@ -13,8 +13,7 @@ use Lumi\Classes\Portfolio;
  */
 class Layout {
 
-	public function __construct()
-	{
+	public function __construct() {
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_enqueue_layout_scripts' ) );
 
@@ -22,8 +21,7 @@ class Layout {
 
 	}
 
-	public function register_enqueue_layout_scripts()
-	{
+	public function register_enqueue_layout_scripts() {
 		//global styles
 		wp_register_style( 'pt_sans', '//fonts.googleapis.com/css?family=PT+Sans&subset=latin,latin-ext', array(), LUMI_CSS_JS_VER );
 		wp_register_style( 'layout', get_template_directory_uri() . '/css/layout.css', array( 'pt_sans' ), LUMI_CSS_JS_VER );
@@ -37,11 +35,10 @@ class Layout {
 		wp_enqueue_script( 'layout' );
 	}
 
-	public function fancybox_autoload()
-	{
+	public function fancybox_autoload() {
 		global $post;
-		if( strpos( $post->post_cotent, '[gallery' ) !== false || strpos( $post->post_content, 'wp-image' ) !== false ) {
-			add_action( 'wp_enqueue_scripts', function() {
+		if ( strpos( $post->post_cotent, '[gallery' ) !== false || strpos( $post->post_content, 'wp-image' ) !== false ) {
+			add_action( 'wp_enqueue_scripts', function () {
 				wp_enqueue_style( 'fancybox' );
 				wp_enqueue_script( 'fancybox' );
 			} );

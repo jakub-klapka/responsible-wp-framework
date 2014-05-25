@@ -10,21 +10,21 @@ namespace Lumi\Admin;
  */
 class Layout {
 
-	public function __construct(){
+	public function __construct() {
 
 		add_filter( 'acf/options_page/settings', array( $this, 'set_options_pages' ) );
 
 	}
 
-	public function set_options_pages($acf_pages)
-	{
-		$options_page = array(
+	public function set_options_pages( $acf_pages ) {
+		$options_page         = array(
 			'title' => 'Obecná nastavení'
 		);
-		$acf_pages['menu'] = 'Nastavení stránek';
-		$acf_pages['title'] = 'Nastavení stránek';
+		$acf_pages['menu']    = 'Nastavení stránek';
+		$acf_pages['title']   = 'Nastavení stránek';
 		$acf_pages['pages'][] = $options_page;
+
 		return $acf_pages;
 	}
-	
+
 } 

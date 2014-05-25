@@ -11,29 +11,26 @@ namespace Lumi\Template;
  */
 class Reviews {
 
-	public function enqueue_review_style()
-	{
+	public function enqueue_review_style() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_review_style_callback' ) );
 	}
 
-	public function enqueue_review_style_callback()
-	{
-		wp_enqueue_style('reviews');
+	public function enqueue_review_style_callback() {
+		wp_enqueue_style( 'reviews' );
 	}
 
-	public function generate_reviews()
-	{
+	public function generate_reviews() {
 		/**
 		 * Code to generate output or any other functions, we might need to run in template file
 		 */
 
 		$gallery = get_field( 'gallery' );
 
-		if( empty( $gallery ) ) {
+		if ( empty( $gallery ) ) {
 			return '';
 		}
 
-		$ids = array_map( function($item) {
+		$ids = array_map( function ( $item ) {
 			return $item['id'];
 		}, $gallery );
 
