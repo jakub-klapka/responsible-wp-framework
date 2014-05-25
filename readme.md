@@ -25,7 +25,7 @@ There are three types of files in core directory:
 Every file contains one class with same name, which is automaticaly instanciated by autoloading function.
 So you can put all your actions into __construct() functions as usual.
 
-Template files
+Template files (aka. onDemand Singletons)
 ---
 Root files in theme direcotry are ment to only generate output. No advanced functionality shouldn't be there. All more complicated functions shoud go to .template.php files in core directory
 Files with suffix `.template.php` are not loaded automaticaly. There are ment to contain functions, which will be needed only on specific pages,
@@ -33,6 +33,12 @@ so there is no need to load them on every pageload (admin or frontend).
 
 When you need those functions, you will call `lumi_template('ClassName')` first, which will return reference to the class.
 You can than call functions as needed. The example in the source code will probably explain it better than I can.
+
+Classes
+---
+Probably only pure-php-way thing in this framework are Classes. They are used in very standard php way and are loaded automatically, when needed. Checkout example in Layout.frontend.
+
+All classes are stored in `core/classes` directory in files named as `ClassName.class.php`. All classes are in namespace `Lumi\Classes`. Don't forget to prefix your instanciation with correct namespace or use `use` keyword as in exapmle.
 
 lumi array
 ---

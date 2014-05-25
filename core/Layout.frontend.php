@@ -3,6 +3,8 @@
 
 namespace Lumi\Frontend;
 
+use Lumi\Classes\Portfolio;
+
 /**
  * Class Layout
  * This will be loaded on every frontend pageload
@@ -43,6 +45,13 @@ class Layout {
 				wp_enqueue_style( 'fancybox' );
 				wp_enqueue_script( 'fancybox' );
 			} );
+		}
+	}
+
+	public function generate_recent_portfolio_list() {
+		foreach ( get_field( 'portfolio', 'option' ) as $portfolio_id ) {
+			$portfolio = new Portfolio( $portfolio_id );
+			echo '<li>' . $portfolio->get_name() . '</li>';
 		}
 	}
 

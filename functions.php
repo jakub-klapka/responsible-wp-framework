@@ -60,3 +60,16 @@ function lumi_template($name) {
 	return $lumi['Template'][$name];
 }
 
+/**
+ * Classes autoloading
+ * All classes are located in core/classes as class_name.class.php
+ * All classes are using namespace Lumi/Classes
+ */
+spl_autoload_register( function( $class ){
+	if( strpos( $class, 'Lumi\\Classes\\' ) === false ) {
+		return;
+	}
+	$tmp = explode('\\', $class);
+	$class_name = end( $tmp );
+	require_once( LUMI_CORE_PATH . 'classes/' . $class_name . '.class.php' );
+} );
