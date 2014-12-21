@@ -61,6 +61,7 @@ foreach ( $core as $scope => $files ) {
  * @return \Lumi\Template\Reviews
  */
 function lumi_template( $name ) {
+	global $lumi;
 	if ( empty( $name ) ) {
 		return false;
 	}
